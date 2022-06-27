@@ -10,8 +10,10 @@ import (
 
 func main() {
 
-	router := gin.New() //router
-	config.Connect()
+	router := gin.New() //creating the router
+	config.Connect()    //connecting to the database
+
+	//different api end points to perform CRUD operations
 	routes.GetUrlRoutes(router)
 	routes.GetByNameRoutes(router)
 	routes.GetByCatRoutes(router)
@@ -19,8 +21,6 @@ func main() {
 	routes.CreateRoutes(router)
 	routes.DeleteRoutes(router)
 
-	//different routes
-
-	router.Run(":8080")
+	router.Run(":8080") //port
 
 }

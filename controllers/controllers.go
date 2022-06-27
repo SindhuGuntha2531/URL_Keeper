@@ -3,16 +3,18 @@ package controllers
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	config "kyc_urls/config"
+	"kyc_urls/config"
 	"kyc_urls/models"
 )
 
+//defining controller functions for different end points
 func GetLinks(c *gin.Context) {
 	var urls []models.Link
 	config.Db.Find(&urls)
 	c.JSON(200, &urls)
 }
 
+//get specific link based on name
 func GetLinkByName(c *gin.Context) {
 	var urls models.Link
 	fmt.Println(c.Param("id"))
@@ -27,6 +29,7 @@ func GetLinkByName(c *gin.Context) {
 
 }
 
+//get links based on category
 func GetLinksByCat(c *gin.Context) {
 	var urls []models.Link
 	row := config.Db.Where("Category=?", c.Param("id")).Find(&urls)
@@ -41,6 +44,7 @@ func GetLinksByCat(c *gin.Context) {
 
 }
 
+//get links based on environment
 func GetLinksByEnv(c *gin.Context) {
 	var urls []models.Link
 	row := config.Db.Where("Environment=?", c.Param("id")).Find(&urls)
@@ -55,6 +59,7 @@ func GetLinksByEnv(c *gin.Context) {
 
 }
 
+//Adding a new link
 func CreateLink(c *gin.Context) {
 	var url models.Link
 	c.BindJSON(&url)
@@ -63,6 +68,7 @@ func CreateLink(c *gin.Context) {
 
 }
 
+//deleting existing links
 func DeleteLink(c *gin.Context) {
 	var url models.Link
 	config.Db.Where("Name=?", c.Param("id")).Delete(&url)

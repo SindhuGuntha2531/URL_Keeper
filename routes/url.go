@@ -5,6 +5,7 @@ import (
 	"kyc_urls/controllers"
 )
 
+// routing to different end points
 func GetUrlRoutes(router *gin.Engine) {
 	router.GET("/links", controllers.GetLinks)
 }

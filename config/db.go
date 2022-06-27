@@ -9,10 +9,12 @@ import (
 	"os"
 )
 
+//global declaration of database and error
 var Db *gorm.DB
 var err error
 
 func Connect() {
+	//loading environment variables
 	dialect := os.Getenv("DIALECT")
 	host := os.Getenv("HOST")
 	dbPort := os.Getenv("DBPORT")
@@ -20,8 +22,10 @@ func Connect() {
 	dbName := os.Getenv("NAME")
 	password := os.Getenv("PASSWORD")
 
+	//database connection string
 	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%s", host, user, dbName, password, dbPort)
 
+	//opening connection to database
 	Db, err = gorm.Open(dialect, dbURI)
 	if err != nil {
 		log.Fatal(err)
