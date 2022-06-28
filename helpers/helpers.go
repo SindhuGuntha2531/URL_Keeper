@@ -20,8 +20,7 @@ func ClearTable() {
 }
 
 func SetGetBooksRouter(db *gorm.DB) (*http.Request, *httptest.ResponseRecorder) {
-	r := gin.New() //creating a new router
-	//api := &APIEnv{DB: db}
+	r := gin.New()                        //creating a new router
 	r.GET("/links", controllers.GetLinks) //http GET request
 	req, err := http.NewRequest(http.MethodGet, "/links", nil)
 	if err != nil {
