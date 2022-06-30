@@ -5,7 +5,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-//defining struct
+//defining struct for url keeper
 type Link struct {
 	gorm.Model
 
